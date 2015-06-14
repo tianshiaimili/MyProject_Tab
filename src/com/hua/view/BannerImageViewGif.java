@@ -18,7 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.hua.R;
-import com.hua.utils.LogUtils2;
+import com.hua.utils.LogUtils;
 
 public class BannerImageViewGif extends ImageView implements OnClickListener{
 
@@ -136,10 +136,10 @@ public class BannerImageViewGif extends ImageView implements OnClickListener{
 				// 如果允许自动播放，就调用playMovie()方法播放GIF动画  
 				playMovie(canvas);
 				invalidate();
-				LogUtils2.i("----after invalidate()");
+				LogUtils.i("----after invalidate()");
 				
 			}else {
-				LogUtils2.w("-----playMovie(canvas)");
+				LogUtils.w("-----playMovie(canvas)");
 				 // 不允许自动播放时，判断当前图片是否正在播放 
 				if(isPlaying){
 					
@@ -191,7 +191,7 @@ public class BannerImageViewGif extends ImageView implements OnClickListener{
 //            field2.setAccessible(true);
             int id = field2.getInt(imageName);
             
-            LogUtils2.d("id===="+id);
+            LogUtils.d("id===="+id);
             
             return id;//typedValueObject.resourceId;  
         } catch (Exception e) {  
@@ -229,7 +229,7 @@ public class BannerImageViewGif extends ImageView implements OnClickListener{
      * @return 播放完成返回true，未完成返回false。 
      */  
     private boolean playMovie(Canvas canvas) {  
-    	LogUtils2.i("----playMovie");
+    	LogUtils.i("----playMovie");
         long now = SystemClock.uptimeMillis();  
         if (mMovieStart == 0) {  
             mMovieStart = now;  

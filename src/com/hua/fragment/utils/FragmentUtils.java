@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import com.hua.utils.LogUtils2;
+import com.hua.utils.LogUtils;
 
 // Referenced classes of package com.pccw.gzmobile.app:
 //            BaseFragment
@@ -112,8 +112,8 @@ public class FragmentUtils
          */
         protected boolean isSameTab()
         {
-        	LogUtils2.d("mPreviousRootFragmentTag== "+mPreviousRootFragmentTag);
-        	LogUtils2.d("mCurrentRootFragmentTag== "+mCurrentRootFragmentTag);
+        	LogUtils.d("mPreviousRootFragmentTag== "+mPreviousRootFragmentTag);
+        	LogUtils.d("mCurrentRootFragmentTag== "+mCurrentRootFragmentTag);
             return mPreviousRootFragmentTag != null && mPreviousRootFragmentTag.equals(mCurrentRootFragmentTag);
         }
 
@@ -142,7 +142,7 @@ public class FragmentUtils
             }
             /**UI底部Tab项的 集合*/
             LinkedHashSet tagSet = feed.getRootFragmentTags();
-            LogUtils2.d("tagSet===="+tagSet.size());
+            LogUtils.d("tagSet===="+tagSet.size());
             if(tagSet == null || tagSet.size() == 0){
                 throw new RuntimeException("FragmentTabSwitcherFeed.getRootFragmentTags() returns null or size is 0.");
             }
@@ -254,20 +254,20 @@ public class FragmentUtils
             {
                 if(childCount > i)
                     convertView = mLinearLayout.getChildAt(i);
-                LogUtils2.w("begin getview in refreshTabBar+++++++++++");
+                LogUtils.w("begin getview in refreshTabBar+++++++++++");
                 tabBarItemView = getView(i, convertView, mLinearLayout, mLayoutInflater);
-                LogUtils2.w("tabBarItemView=="+tabBarItemView);
+                LogUtils.w("tabBarItemView=="+tabBarItemView);
                 if(rebuild)
                     if(mHorizontalTabBar)
                     {
-                    	LogUtils2.e("mHorizontalTabBar=="+mHorizontalTabBar);
-                    	LogUtils2.e("tabBarItemView==***"+tabBarItemView.getClass());
-                    	LogUtils2.e("tabBarItemView.getLayoutParams().height=="+
+                    	LogUtils.e("mHorizontalTabBar=="+mHorizontalTabBar);
+                    	LogUtils.e("tabBarItemView==***"+tabBarItemView.getClass());
+                    	LogUtils.e("tabBarItemView.getLayoutParams().height=="+
                     			tabBarItemView.getLayoutParams().WRAP_CONTENT);
                     	
                     	android.widget.LinearLayout.LayoutParams ll = 
                     			new android.widget.LinearLayout.LayoutParams(0, tabBarItemView.getLayoutParams().WRAP_CONTENT);
-                    	LogUtils2.e("ll=="+ll);
+                    	LogUtils.e("ll=="+ll);
                         ll.weight = 1.0F;
                         mLinearLayout.addView(tabBarItemView, ll);
                     } else
@@ -345,13 +345,13 @@ public class FragmentUtils
          */
         public void switchTab(String rootFragmentTag, boolean skipSameTab)
         {
-        	LogUtils2.v("********switchTab*********  = "+rootFragmentTag);
+        	LogUtils.v("********switchTab*********  = "+rootFragmentTag);
         	
         	if(getCurrentTabStack() != null){
         		
-        		LogUtils2.e("switchTab=size= "+getCurrentTabStack().size());
-        		LogUtils2.d("switchTab=getFirst= "+getCurrentTabStack().getFirst());
-        		LogUtils2.e("switchTab=getLast= "+getCurrentTabStack().getLast());
+        		LogUtils.e("switchTab=size= "+getCurrentTabStack().size());
+        		LogUtils.d("switchTab=getFirst= "+getCurrentTabStack().getFirst());
+        		LogUtils.e("switchTab=getLast= "+getCurrentTabStack().getLast());
         	}
         	
             if(rootFragmentTag == null)
@@ -361,10 +361,10 @@ public class FragmentUtils
            /**
             * 点击同一个tab的时候的处理
             */
-            LogUtils2.i("skipSameTab==  "+skipSameTab +"   isSameTab()== "+isSameTab());
+            LogUtils.i("skipSameTab==  "+skipSameTab +"   isSameTab()== "+isSameTab());
             if(skipSameTab && isSameTab())
             {
-            	LogUtils2.w("same**************");
+            	LogUtils.w("same**************");
                 Log.w(FragmentUtils.TAG, (new StringBuilder(String.valueOf(getClass().getSimpleName()))).append(" no need to switch same tab : ").append(mCurrentRootFragmentTag).toString());
                 if(mSwitcherListener != null)
                 {
@@ -377,9 +377,9 @@ public class FragmentUtils
             }
            
             
-            LogUtils2.e("getCurrentTabStack().size()== "+getCurrentTabStack().size());
+            LogUtils.e("getCurrentTabStack().size()== "+getCurrentTabStack().size());
             if(getCurrentTabStack().size() == 0){
-            	LogUtils2.i("getCurrentTabStack().size() == 0");
+            	LogUtils.i("getCurrentTabStack().size() == 0");
                 pushFragment(true, new Fragment[] {
                     mSwitcherFeed.newRootFragment(rootFragmentTag)
                 });
@@ -405,7 +405,7 @@ public class FragmentUtils
          */
         private LinkedList getCurrentTabStack()
         {
-        	LogUtils2.w("mCurrentRootFragmentTag==="+mCurrentRootFragmentTag);
+        	LogUtils.w("mCurrentRootFragmentTag==="+mCurrentRootFragmentTag);
             if(mCurrentRootFragmentTag == null)
             {
                 Log.w(FragmentUtils.TAG, "Please call switchTab() first before using other methods.");
@@ -469,19 +469,19 @@ public class FragmentUtils
             for(int i = 0; i < j; i++)
             {
                 Fragment fragment = afragment[i];
-                LogUtils2.i("****mCurrentFragment== "+mCurrentFragment);
+                LogUtils.i("****mCurrentFragment== "+mCurrentFragment);
                 if(mCurrentFragment != null)
                 {
 //                    Log.d(FragmentUtils.TAG, (new StringBuilder("Detach fragment ")).append(mCurrentFragment.getTag()).toString());
                    /**
                     */
-                    LogUtils2.i("pushFragment*******");
+                    LogUtils.i("pushFragment*******");
 //                    transaction.detach(mCurrentFragment);
                     transaction.hide(mCurrentFragment);
                 }
                 if(add)
                 {
-                	LogUtils2.i("add********=="+add);
+                	LogUtils.i("add********=="+add);
                     String fragmentTag = (new StringBuilder(String.valueOf(mCurrentRootFragmentTag))).append("-").append(getCurrentTabStack().size()).toString();
                     transaction.add(mContainerId, fragment, fragmentTag);
 //                    mFragmentActivity.overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
@@ -489,10 +489,10 @@ public class FragmentUtils
                     getCurrentTabStack().addFirst(fragmentTag);
                 } else
                 {
-                	LogUtils2.e("pushFragment_______attach______");
-                	LogUtils2.i("add******false**=="+add);
+                	LogUtils.e("pushFragment_______attach______");
+                	LogUtils.i("add******false**=="+add);
 //                    Log.d(FragmentUtils.TAG, (new StringBuilder("Attach fragment ")).append(fragment.getTag()).toString());
-                	LogUtils2.e("test  if  the fragment is null  = "+ fragment);
+                	LogUtils.e("test  if  the fragment is null  = "+ fragment);
                     transaction.attach(fragment);
                     
                     if(!fragment.isAdded()){
@@ -599,11 +599,11 @@ public class FragmentUtils
         public void onFragmentActivityBackPressed(Runnable superOnBackPressed)
         {
             Fragment f = getCurrentTabFragment();
-            LogUtils2.d("Currtent=size=="+getCurrentTabStack().size());
-            LogUtils2.d("getCurrentTabFragment=="+getCurrentTabFragment());
+            LogUtils.d("Currtent=size=="+getCurrentTabStack().size());
+            LogUtils.d("getCurrentTabFragment=="+getCurrentTabFragment());
             if(f == null)
             {
-            	LogUtils2.e("f==="+f);
+            	LogUtils.e("f==="+f);
                 if(superOnBackPressed != null)
                     superOnBackPressed.run();
                 else
@@ -614,7 +614,7 @@ public class FragmentUtils
             if(isRootFragment())
                 mFragmentActivity.finish();
             else{
-                LogUtils2.e("onFragmentActivityBackPressed888");
+                LogUtils.e("onFragmentActivityBackPressed888");
             	popFragment();
             	}
             }

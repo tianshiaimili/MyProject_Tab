@@ -1,6 +1,6 @@
 package com.hua.fragments;
 
-import com.hua.utils.LogUtils2;
+import com.hua.utils.LogUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,14 +18,14 @@ public class TestFragment extends Fragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		LogUtils2.i("***onCreate***");
+		LogUtils.i("***onCreate***");
 	}
 
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		LogUtils2.i("***onCreateView***");
+		LogUtils.i("***onCreateView***");
 		String con = "Testing...";
 		if(savedInstanceState != null){
 			Bundle mBundle = savedInstanceState;
@@ -43,7 +43,7 @@ public class TestFragment extends Fragment{
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		LogUtils2.i("***onViewCreated***");
+		LogUtils.i("***onViewCreated***");
 	}
 	
 	
@@ -51,20 +51,20 @@ public class TestFragment extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		LogUtils2.i("***onActivityCreated***");
+		LogUtils.i("***onActivityCreated***");
 	}
 	
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		LogUtils2.i("***onStart***");
+		LogUtils.i("***onStart***");
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		LogUtils2.i("***onResume***");
+		LogUtils.i("***onResume***");
 	}
 	
 }

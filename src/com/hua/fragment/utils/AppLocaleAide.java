@@ -11,7 +11,7 @@ import android.util.Log;
 
 import java.util.Locale;
 
-import com.hua.utils.LogUtils2;
+import com.hua.utils.LogUtils;
 
 public final class AppLocaleAide
 {
@@ -59,7 +59,7 @@ public final class AppLocaleAide
     {
         Locale loc = getAppLocale(context);
         boolean ret = loc.getLanguage().contains("en");
-        LogUtils2.d( (new StringBuilder("Current app locale is ")).append(loc).toString());
+        LogUtils.d( (new StringBuilder("Current app locale is ")).append(loc).toString());
         return ret;
     }
 
@@ -67,7 +67,7 @@ public final class AppLocaleAide
     {
         Locale loc = getAppLocale(context);
         boolean ret = loc.getLanguage().contains("zh");
-        LogUtils2.d( (new StringBuilder("Current app locale is ")).append(loc).toString());
+        LogUtils.d( (new StringBuilder("Current app locale is ")).append(loc).toString());
         return ret;
     }
 
@@ -80,11 +80,11 @@ public final class AppLocaleAide
     {
         Locale resLocale = context.getResources().getConfiguration().locale;
         Locale selfLocale = mLocale != null ? mLocale : resLocale;
-        LogUtils2.v( (new StringBuilder("selfLocale = ")).append(selfLocale).append(", newLocale = ").append(newLocale).append("; resLocale = ").append(resLocale).append(", defaultLocale =").append(Locale.getDefault()).append(", mLocale ").append(mLocale).toString());
+        LogUtils.v( (new StringBuilder("selfLocale = ")).append(selfLocale).append(", newLocale = ").append(newLocale).append("; resLocale = ").append(resLocale).append(", defaultLocale =").append(Locale.getDefault()).append(", mLocale ").append(mLocale).toString());
         boolean changed;
         if(selfLocale.equals(newLocale))
         {
-            LogUtils2.d( (new StringBuilder(String.valueOf(context.getClass().getSimpleName()))).append(" no need to setAppLocale, using same locale ").append(newLocale).toString());
+            LogUtils.d( (new StringBuilder(String.valueOf(context.getClass().getSimpleName()))).append(" no need to setAppLocale, using same locale ").append(newLocale).toString());
             changed = false;
         } else
         {
@@ -119,13 +119,13 @@ public final class AppLocaleAide
     public final void syncLocaleWithAppLocaleOnCreate(Context context)
     {
 //    	LogUtils2.v();
-        LogUtils2.v( "syncLocaleWithAppLocaleOnCreate");
+        LogUtils.v( "syncLocaleWithAppLocaleOnCreate");
         syncLocaleWithAppLocale(context, false);
     }
 
     public final void syncLocaleWithAppLocaleOnResume(Context context)
     {
-        LogUtils2.v("syncLocaleWithAppLocaleOnResume");
+        LogUtils.v("syncLocaleWithAppLocaleOnResume");
         syncLocaleWithAppLocale(context, true);
     }
 

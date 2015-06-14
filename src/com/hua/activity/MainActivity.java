@@ -27,7 +27,7 @@ import com.hua.fragment.utils.FragmentUtils.FragmentTabSwitcher;
 import com.hua.fragment.utils.FragmentUtils.FragmentTabSwitcherFeed;
 import com.hua.fragments.TestFragment;
 import com.hua.utils.KeyboardUtils;
-import com.hua.utils.LogUtils2;
+import com.hua.utils.LogUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity {
 				/**
 				 * linkHashset遍历会得出加入时的顺序
 				 */
-				LogUtils2.e("getRootFragmentTags********");
+				LogUtils.e("getRootFragmentTags********");
 				return FragmentUtils.makeRootFragmentTags(new String[] {
 						TAB_HOME, TAB_HOT, TAB_FIND, TAB_ASSISTANT,
 						TAB_SETTING });
@@ -216,7 +216,7 @@ public class MainActivity extends BaseActivity {
 			@Override
 			public View getView(int position, View convertView, ViewGroup viewgroup,
 					LayoutInflater layoutinflater) {
-				LogUtils2.e("mFragmentTabBarController.getView=="+position);
+				LogUtils.e("mFragmentTabBarController.getView=="+position);
 				ImageView icon = null;
 				TextView lable = null;
 				////
@@ -298,9 +298,9 @@ public class MainActivity extends BaseActivity {
 		};
 		
 		///
-		LogUtils2.d("createTabBar------------");
+		LogUtils.d("createTabBar------------");
 		mFragmentTabBarController.createTabBar();
-		LogUtils2.d("createTabBar**********");
+		LogUtils.d("createTabBar**********");
 		///
 		//
 		mFragmentTabSwitcher.setSwitcherListener(new FragmentUtils.FragmentTabSwitcherListener() {
@@ -395,7 +395,7 @@ public class MainActivity extends BaseActivity {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			LogUtils2.e("error=="+e.getMessage());
+			LogUtils.e("error=="+e.getMessage());
 		}
 		
 	}

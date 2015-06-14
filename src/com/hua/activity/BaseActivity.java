@@ -21,7 +21,7 @@ import com.hua.cache.ACache;
 import com.hua.fragment.utils.AppLocaleAide;
 import com.hua.fragment.utils.AppProgressDialogAide;
 import com.hua.network.utils.HttpUtil;
-import com.hua.utils.LogUtils2;
+import com.hua.utils.LogUtils;
 //import com.hua.wedget.crouton.Crouton;
 //import com.hua.wedget.crouton.Style;
 public class BaseActivity extends FragmentActivity implements AppLocaleAide.AppLocaleAideSupport{
@@ -290,7 +290,7 @@ public class BaseActivity extends FragmentActivity implements AppLocaleAide.AppL
     public void onBackPressed() {
     	// TODO Auto-generated method stub
     	super.onBackPressed();
-    	LogUtils2.e("onBackPressed---------");
+    	LogUtils.e("onBackPressed---------");
     	overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
     	
     }

@@ -35,7 +35,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.hua.R;
-import com.hua.utils.LogUtils2;
+import com.hua.utils.LogUtils;
 
 /**
  * 自定义的HttpClient工具类
@@ -92,14 +92,14 @@ public class CustomHttpClient {
             return (resEntity == null) ? null : EntityUtils.toString(resEntity,
                     CHARSET_UTF8);
         } catch (UnsupportedEncodingException e) {
-            LogUtils2.w(TAG, "----UnsupportedEncodingException"
+            LogUtils.w(TAG, "----UnsupportedEncodingException"
                     + e.getMessage());
             return null;
         } catch (ClientProtocolException e) {
-            LogUtils2.w(TAG, "----ClientProtocolException" + e.getMessage());
+            LogUtils.w(TAG, "----ClientProtocolException" + e.getMessage());
             return null;
         } catch (IOException e) {
-            LogUtils2.w(TAG, "----IOException" + e.getMessage());
+            LogUtils.w(TAG, "----IOException" + e.getMessage());
             
             return null;
             // throw new RuntimeException(context.getResources().getString(
@@ -132,12 +132,12 @@ public class CustomHttpClient {
                 sb.append(String.format("%s=%s",
                         nameValuePairs[i].getName(),
                         nameValuePairs[i].getValue()));
-                LogUtils2.w(" nameValuePairs[i].getName() = "+ nameValuePairs[i].getName());
-                LogUtils2.w(" nameValuePairs[i].getValue() = "+ nameValuePairs[i].getValue());
+                LogUtils.w(" nameValuePairs[i].getName() = "+ nameValuePairs[i].getName());
+                LogUtils.w(" nameValuePairs[i].getValue() = "+ nameValuePairs[i].getValue());
             }
         }
         Log.i(TAG, sb.toString());
-        LogUtils2.i("ready url = "+sb.toString());
+        LogUtils.i("ready url = "+sb.toString());
         // HttpGet连接对象
         HttpGet httpRequest = new HttpGet(sb.toString());
         // 取得HttpClient对象
