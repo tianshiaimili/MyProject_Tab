@@ -64,6 +64,7 @@ public class AppUtil {
 
     public static List<String[]> mProcessList = null;
 
+    /**get the version name*/
     public static String getVersion(Context context) {
         try {
             PackageManager manager = context.getPackageManager();
@@ -91,10 +92,10 @@ public class AppUtil {
     }
 
     /**
-     * 描述：打开并安装文件.
+     * described ：open and install the apk file
      *
      * @param context the context
-     * @param file    apk文件路径
+     * @param file    the file path of the apk
      */
     public static void installApk(Context context, File file) {
         Intent intent = new Intent();
@@ -106,10 +107,10 @@ public class AppUtil {
     }
 
     /**
-     * 描述：卸载程序.
+     * described ： uninstall the apk
      *
      * @param context     the context
-     * @param packageName 包名
+     * @param packageName  the packageName of the apk
      */
     public static void uninstallApk(Context context, String packageName) {
         Intent intent = new Intent(Intent.ACTION_DELETE);
@@ -119,10 +120,10 @@ public class AppUtil {
     }
 
     /**
-     * 用来判断服务是否运行.
+     * to judge whether the service is running
      *
      * @param context   the context
-     * @param className 判断的服务名字 "com.xxx.xx..XXXService"
+     * @param className the  target service Name  e.g "com.xxx.xx..XXXService"
      * @return true 在运行 false 不在运行
      */
     public static boolean isServiceRunning(Context context, String className) {
@@ -142,7 +143,7 @@ public class AppUtil {
     }
 
     /**
-     * 停止服务.
+     * stop the service
      *
      * @param context   the context
      * @param className the class name
@@ -195,7 +196,7 @@ public class AppUtil {
     }
 
     /**
-     * 描述：判断网络是否有效.
+     * to judge whether the network available
      *
      * @param context the context
      * @return true, if is network available
@@ -585,6 +586,8 @@ public class AppUtil {
         ProcessInfo process = new ProcessInfo();
         if (mProcessList == null) {
             mProcessList = getProcessRunningInfo();
+            LogUtils.d("the mProcessList=="+mProcessList);
+            
         }
         String processNameTemp = "";
 
@@ -828,6 +831,7 @@ public class AppUtil {
         List<String[]> processList = null;
         try {
             String result = runCommandTopN1();
+            LogUtils.d("the result --"+result);
             processList = parseProcessRunningInfo(result);
         } catch (Exception e) {
             e.printStackTrace();
